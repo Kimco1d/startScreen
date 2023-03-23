@@ -1,14 +1,19 @@
 function getTime() {
   const time = document.querySelector(".time");
 
-  const newDate = new Date();
+  const today = new Date();
+  const hours = today.getHours() % 12 || 12;
+  const minutes = String(today.getMinutes()).padStart(2, "0");
+  const seconds = String(today.getSeconds()).padStart(2, "0");
+  const amOrPm = hours >= 12 ? "AM" : "PM";
 
-  const hours = String(newDate.getHours()).padStart(2, "0");
-  const minutes = String(newDate.getMinutes()).padStart(2, "0");
-  const seconds = String(newDate.getSeconds()).padStart(2, "0");
+  // Format the hours to two digits
+  const formattedHours = String(hours).padStart(2, "0");
 
-  // time.innerText = hours + ":" + minutes + ":" + seconds;
-  time.innerText = `${hours}:${minutes}:${seconds}`;
+  // Combine the formatted time components into a string
+  const formattedTime = `${formattedHours}:${minutes}:${seconds} ${amOrPm}`;
+
+  time.innerText = formattedTime;
 }
 
 getTime();
